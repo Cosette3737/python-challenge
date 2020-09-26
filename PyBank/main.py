@@ -3,6 +3,7 @@ import os
 #reading CSV File
 import csv
 csvpath=os.path.join("Resources\Budget_data.csv.csv")
+fileout=os.path.join("Budget_analysis.txt")
 with open(csvpath,'r') as csvfile:
         csvreader = csv.reader(csvfile, delimiter=",")
         header = next(csvreader)
@@ -23,12 +24,18 @@ with open(csvpath,'r') as csvfile:
                 summonth=sum(month_change)
                 total_change =round(summonth/(total_months))
                 summonth=sum(month_change)
-                great_inc = max(month_change)
-                great_dec = min(month_change)
-        
-print(f"Financial Analysis \n --------------")
-print(f"Total Months:{total_months}")
-print(f"Total: ${total_profit}")
-print(f"Average Change: ${total_change}")
-print(f"Greatest Increase in profits: {great_inc}")
-print(f"Greatest Decrease in profits: {great_dec}")
+                #great_inc = max(month_change)
+                #great_dec = min(month_change)
+output=(      
+      f"Financial Analysis \n -------------\n"
+      f"Total Months:{total_months}\n"
+      f"Total: ${total_profit}\n"
+      f"Average Change: ${total_change}\n")
+      #f"Greatest Increase in profits: {great_inc}\n")
+      #f"Greatest Decrease in profits: {great_dec}"))
+
+      #output to terminal
+print(output)      
+#output to txt.file
+with open(fileout, "w") as txt_file:
+    txt_file.write(output)
