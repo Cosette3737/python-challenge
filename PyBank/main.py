@@ -2,7 +2,7 @@
 import os
 #reading CSV File
 import csv
-csvpath=os.path.join("PyBank\Resources\Budget_data.csv.csv")
+csvpath=os.path.join("Budget_data.csv.csv")
 fileout=os.path.join("Budget_analysis.txt")
 #openfile
 with open(csvpath,'r') as csvfile:
