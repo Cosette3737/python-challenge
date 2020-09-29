@@ -1,42 +1,63 @@
-
 # import the os module
 import os
 #reading CSV File
 import csv
-csvpath=os.path.join("Resources\Budget_data.csv.csv")
-fileout=os.path.join("Budget_analysis.txt")
-with open(csvpath,'r') as csvfile:
-        csvreader = csv.reader(csvfile, delimiter=",")
-        header = next(csvreader)
 
-        profits = []
-        months = []
+#fileout=os.path.join("Election_Results.txt")
+csvpath=os.path.join("election_data.csv")
+#fileout=os.path.join("Election_Results.txt")
 
+    
+with open(csvpath) as csvfile:
+        csvreader = csv.reader(csvfile,delimiter=',')
+        header=next(csvreader)
+        csvpath=os.path.join("election_data.csv")
+        counter=0
+        votecount=[]
+        smalllist=[]
+        unicount=[]
+        candidatestring=[]
+#Total number of votes        
+#totalvotes=sum(introw[1])
         for row in csvreader:
-                profit = int(row[1])
-                profits.append(profit)
-                month = str(row[0])  
-                months.append(month)
+            counter = counter + 1
+            candidate = (row[2])
+            
+    #create list of individual candidates
+            if candidate in smalllist:
+                candidate_index=smalllist.index(candidate)
+                unicount[candidate_index]=unicount[candidate_index] +1
+                
+            else:
+                smalllist.append(candidate)
+                unicount.append(1)
 
-                total_months = len(profits)
-                total_profit = sum(profits)
-                month_change = [profits[i + 1] - profits[i] for i in range(len(profits)-1)]
-                change_count = len(month_change)
-                summonth=sum(month_change)
-                total_change =round(summonth/(total_months))
-                summonth=sum(month_change)
-                #great_inc = max(month_change)
-                #great_dec = min(month_change)
-output=(      
-      f"Financial Analysis \n -------------\n"
-      f"Total Months:{total_months}\n"
-      f"Total: ${total_profit}\n"
-      f"Average Change: ${total_change}\n")
-      #f"Greatest Increase in profits: {great_inc}\n")
-      #f"Greatest Decrease in profits: {great_dec}"))
+        percent=[]
+        topvotes=unicount[0]
+        topindex=0
+        for count in range(len(smalllist)):
+            percentage=round(unicount[count]/counter*100,2)
+            percent.append(percentage)
+            if unicount[count]>topvotes:
+                topvotes=unicount[count]
+                print(topvotes)
+                topindex=count
+                Winner=candidate[topindex]
 
-      #output to terminal
-print(output)      
+        for x in range(len(smalllist)):
+           x='{smalllist[x]} : {percent[x]}%  ({unicount[x])})'
+
+output=(
+f"Election Results\n -------------\n"
+f"Total Votes: {counter}\n"
+f"-------------\n"
+f"x-------------\n"
+f"Winner:{}\n"
+f"-------------")
+print(output)
+
+
 #output to txt.file
 with open(fileout, "w") as txt_file:
     txt_file.write(output)
+  
