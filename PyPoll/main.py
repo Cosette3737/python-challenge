@@ -4,7 +4,7 @@ import os
 import csv
 
 fileout=os.path.join("Election_Results.txt")
-csvpath=os.path.join("C:\Users\coset\OneDrive\Desktop\python-challenge\PyPoll\Resources\election_data.csv.csv")
+csvpath=os.path.join("Resources\election_data.csv.csv")
 with open(csvpath) as csvfile:
         csvreader = csv.reader(csvfile,delimiter=',')
         header=next(csvreader)
@@ -62,5 +62,5 @@ print(end)
 with open(fileout, "w") as txt_file:
     txt_file.write(output1)
     for x in range(len(unicount)):
-        txt_file.write(f'{smalllist[x]} : {percent[x]}%  ({unicount[x]})')
+        txt_file.write(f'{smalllist[x]} : {percent[x]}%  ({unicount[x]}\n)')
     txt_file.write(end)
