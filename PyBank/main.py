@@ -2,7 +2,7 @@
 import os
 #reading CSV File
 import csv
-csvpath=os.path.join("Budget_data.csv.csv")
+csvpath=os.path.join("Resources\Budget_data.csv.csv")
 fileout=os.path.join("Budget_analysis.txt")
 #openfile
 with open(csvpath,'r') as csvfile:
@@ -39,7 +39,7 @@ with open(csvpath,'r') as csvfile:
 
 
 changecount=round((Totprofitchange)/(NumberProfChange),2)
-print(changecount)
+#print(changecount)
             #Get the Greatest increase and Lowest increase
 great_inc=max(profitchangelist)
 great_index=profitchangelist.index(great_inc)
