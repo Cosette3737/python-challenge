@@ -23,7 +23,7 @@ with open(csvpath,'r') as csvfile:
             counter=1+counter
             date.append(str(row[0]))
             profits.append(int(row[1]))
-            
+
             #get values for total month, total revenue
             total_months = len(date)
             NumberProfChange=total_months-1
@@ -39,7 +39,7 @@ with open(csvpath,'r') as csvfile:
 
 
 changecount=round((Totprofitchange)/(NumberProfChange),2)
-#print(changecount)
+print(changecount)
             #Get the Greatest increase and Lowest increase
 great_inc=max(profitchangelist)
 great_index=profitchangelist.index(great_inc)
